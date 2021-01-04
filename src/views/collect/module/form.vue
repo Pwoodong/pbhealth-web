@@ -22,8 +22,6 @@
           v-model="form.type"
           style="width: 178px"
           placeholder="请选择"
-          @remove-tag="deleteTag"
-          @change="changeJob"
         >
           <el-option
             v-for="item in dict.sport_type"

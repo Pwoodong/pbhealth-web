@@ -7,9 +7,9 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            New Visits
+            总里程(公里)
           </div>
-          <count-to :start-val="0" :end-val="102400" :duration="2600" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="totalKilometre" :duration="2600" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -20,9 +20,9 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            Messages
+            总次数
           </div>
-          <count-to :start-val="0" :end-val="81212" :duration="3000" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="totalCount" :duration="3000" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -33,9 +33,9 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            Purchases
+            总耗时(分钟)
           </div>
-          <count-to :start-val="0" :end-val="9280" :duration="3200" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="totalConsumeTime" :duration="3200" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -46,9 +46,9 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            Shoppings
+            总消耗(千卡)
           </div>
-          <count-to :start-val="0" :end-val="13600" :duration="3600" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="totalCalorie" :duration="3600" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -57,14 +57,35 @@
 
 <script>
 import CountTo from 'vue-count-to'
+import { getSumData } from '@/api/dashboard/dashboard'
 
 export default {
   components: {
     CountTo
   },
+  data() {
+    return {
+      totalKilometre: 0,
+      totalCount: 0,
+      totalConsumeTime: 0,
+      totalCalorie: 0
+    }
+  },
+  mounted() {
+    this.getResultData()
+  },
   methods: {
     handleSetLineChartData(type) {
       this.$emit('handleSetLineChartData', type)
+    },
+    getResultData() {
+      getSumData().then(data => {
+        console.log(data)
+        this.totalKilometre = data.sumKilometre
+        this.totalCount = data.sumCount
+        this.totalConsumeTime = data.sumConsumeTime
+        this.totalCalorie = data.sumCalorie
+      })
     }
   }
 }
