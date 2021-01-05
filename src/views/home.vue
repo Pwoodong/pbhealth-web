@@ -53,7 +53,8 @@ const barChartData = {
   monthList: {
     xAxis: [28, 30, 31, 1, 2, 3, 6],
     yAxisKilometre: [100, 120, 161, 134, 105, 160, 165],
-    yAxisConsumeTime: [120, 82, 91, 154, 162, 140, 145]
+    yAxisConsumeTime: [120, 82, 91, 154, 162, 140, 145],
+    yAxisCalorie: [120, 82, 91, 154, 162, 140, 145]
   }
 }
 

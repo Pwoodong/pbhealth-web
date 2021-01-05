@@ -2,7 +2,6 @@ import request from '@/utils/request'
 
 export function getSumData() {
   const params = {
-    userId: 1
   }
   return request({
     url: 'health-calculate/statistics/sum',
@@ -13,7 +12,6 @@ export function getSumData() {
 
 export function getReportData() {
   const params = {
-    userId: 1
   }
   return request({
     url: 'health-calculate/statistics/healthReport',

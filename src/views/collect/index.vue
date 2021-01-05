@@ -7,7 +7,7 @@
         <!-- 新增 -->
         <el-button
           slot="left"
-          v-permission="['admin','storage:add']"
+          v-permission="['admin','collect:add']"
           class="filter-item"
           size="mini"
           type="primary"
@@ -30,10 +30,11 @@
             :headers="headers"
             :on-success="handleSuccess"
             :on-error="handleError"
+            accept=".gpx"
             :action="actionUrl"
           >
             <div class="eladmin-upload"><i class="el-icon-upload" /> 添加文件</div>
-            <div slot="tip" class="el-upload__tip">可上传任意格式文件，且不超过100M</div>
+            <div slot="tip" class="el-upload__tip">可上传gpx格式文件，且不超过100M</div>
           </el-upload>
         </el-form-item>
       </el-form>
@@ -63,7 +64,7 @@
 
       <!--   编辑与删除   -->
       <el-table-column
-        v-if="checkPer(['admin','job:edit','job:del'])"
+        v-if="checkPer(['admin','collect:edit','collect:del'])"
         label="操作"
         width="130px"
         align="center"
@@ -116,9 +117,9 @@ export default {
         'Authorization': getToken()
       },
       permission: {
-        add: ['admin', 'job:add'],
-        edit: ['admin', 'job:edit'],
-        del: ['admin', 'job:del']
+        add: ['admin', 'collect:add'],
+        edit: ['admin', 'collect:edit'],
+        del: ['admin', 'collect:del']
       }
     }
   },
