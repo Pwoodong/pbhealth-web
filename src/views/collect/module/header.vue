@@ -2,7 +2,7 @@
   <div
     v-if="crud.props.searchToggle"
   >
-    <date-range-picker v-model="query.createTime" class="date-item" />
+    <date-range-picker v-model="query.queryTime" class="date-item" />
     <rrOperation />
   </div>
 </template>

@@ -40,6 +40,13 @@ module.exports = {
           '^/health-collect': 'health-collect'
         }
       },
+      '/health-calculate': {
+        target: process.env.VUE_APP_CALCULATE_API,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/health-calculate': 'health-calculate'
+        }
+      },
       '/auth': {
         target: process.env.VUE_APP_BASE_API,
         changeOrigin: true,

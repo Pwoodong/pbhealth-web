@@ -30,7 +30,7 @@
             :headers="headers"
             :on-success="handleSuccess"
             :on-error="handleError"
-            accept=".gpx"
+            accept=".gpx,.jpeg,.png"
             :action="actionUrl"
           >
             <div class="eladmin-upload"><i class="el-icon-upload" /> 添加文件</div>
