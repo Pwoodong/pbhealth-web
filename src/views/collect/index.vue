@@ -101,7 +101,7 @@ export default {
   cruds() {
     return CRUD({
       title: '运动数据',
-      url: 'health-collect/runRecord',
+      url: '/collect/runRecord',
       sort: ['id,desc'],
       crudMethod: { ...crudRunRecoed }
     })
@@ -112,7 +112,7 @@ export default {
   data() {
     return {
       dialog: false,
-      actionUrl: '/health-collect/runRecord/upload',
+      actionUrl: '/collect/runRecord/upload',
       headers: {
         'Authorization': getToken()
       },

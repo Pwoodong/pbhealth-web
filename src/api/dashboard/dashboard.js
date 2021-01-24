@@ -4,7 +4,7 @@ export function getSumData() {
   const params = {
   }
   return request({
-    url: 'health-calculate/statistics/sum',
+    url: '/calculate/statistics/sum',
     method: 'post',
     params
   })
@@ -14,7 +14,7 @@ export function getReportData() {
   const params = {
   }
   return request({
-    url: 'health-calculate/statistics/healthReport',
+    url: '/calculate/statistics/healthReport',
     method: 'post',
     params
   })

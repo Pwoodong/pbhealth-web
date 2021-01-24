@@ -33,18 +33,18 @@ module.exports = {
           '^/api': 'api'
         }
       },
-      '/health-collect': {
+      '/collect': {
         target: process.env.VUE_APP_COLLECT_API,
         changeOrigin: true,
         pathRewrite: {
-          '^/health-collect': 'health-collect'
+          '^/collect': 'collect'
         }
       },
-      '/health-calculate': {
+      '/calculate': {
         target: process.env.VUE_APP_CALCULATE_API,
         changeOrigin: true,
         pathRewrite: {
-          '^/health-calculate': 'health-calculate'
+          '^/calculate': 'calculate'
         }
       },
       '/auth': {

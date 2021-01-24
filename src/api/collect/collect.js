@@ -7,7 +7,7 @@ export function getAllCollect() {
     enabled: true
   }
   return request({
-    url: 'health-collect/runRecord',
+    url: '/collect/runRecord',
     method: 'get',
     params
   })
@@ -15,7 +15,7 @@ export function getAllCollect() {
 
 export function add(data) {
   return request({
-    url: 'health-collect/runRecord',
+    url: '/collect/runRecord',
     method: 'post',
     data
   })
@@ -23,7 +23,7 @@ export function add(data) {
 
 export function del(ids) {
   return request({
-    url: 'health-collect/runRecord',
+    url: '/collect/runRecord',
     method: 'delete',
     data: ids
   })
@@ -31,7 +31,7 @@ export function del(ids) {
 
 export function edit(data) {
   return request({
-    url: 'health-collect/runRecord',
+    url: '/collect/runRecord',
     method: 'put',
     data
   })

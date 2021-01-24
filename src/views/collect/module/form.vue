@@ -37,35 +37,96 @@
       >
         <el-input
           v-model="form.kilometre"
-          style="width: 370px;"
+          oninput="value=value.replace(/[^0-9.]/g,'')"
+          style="width: 178px;"
         />
+        <span>公里</span>
       </el-form-item>
       <el-form-item
-        label="平均配速"
+        label="配速"
         prop="pace"
       >
-        <el-input
-          v-model="form.pace"
-          style="width: 370px;"
-        />
+        <el-select
+          v-model="form.paceMinutes"
+          style="width: 78px"
+          placeholder="请选择"
+        >
+          <el-option
+            v-for="item in dict.sport_time_value"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+        <span>分</span>
+        <el-select
+          v-model="form.paceSeconds"
+          style="width: 78px"
+          placeholder="请选择"
+        >
+          <el-option
+            v-for="item in dict.sport_time_value"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+        <span>秒/公里</span>
       </el-form-item>
       <el-form-item
-        label="平均心率"
+        label="心率"
         prop="heartRate"
       >
-        <el-input
+        <el-select
           v-model="form.heartRate"
-          style="width: 370px;"
-        />
+          style="width: 178px"
+          placeholder="请选择"
+        >
+          <el-option
+            v-for="item in dict.heartrate_value"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+        <span>次/分</span>
       </el-form-item>
       <el-form-item
         label="耗时"
         prop="consumeTime"
       >
         <el-input
-          v-model="form.consumeTime"
-          style="width: 370px;"
+          v-model="form.consumeTimeHours"
+          oninput="value=value.replace(/[^0-9.]/g,'')"
+          style="width: 78px;"
         />
+        <span>时</span>
+        <el-select
+          v-model="form.consumeTimeMinutes"
+          style="width: 78px"
+          placeholder="请选择"
+        >
+          <el-option
+            v-for="item in dict.sport_time_value"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+        <span>分</span>
+        <el-select
+          v-model="form.consumeTimeSeconds"
+          style="width: 78px"
+          placeholder="请选择"
+        >
+          <el-option
+            v-for="item in dict.sport_time_value"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+        <span>秒</span>
       </el-form-item>
       <el-form-item
         label="卡路里"
@@ -73,8 +134,10 @@
       >
         <el-input
           v-model="form.calorie"
-          style="width: 370px;"
+          oninput="value=value.replace(/[^0-9.]/g,'')"
+          style="width: 178px;"
         />
+        <span>千卡</span>
       </el-form-item>
       <el-form-item
         label="爬升"
@@ -82,16 +145,23 @@
       >
         <el-input
           v-model="form.climb"
-          style="width: 370px;"
+          oninput="value=value.replace(/[^0-9.]/g,'')"
+          style="width: 178px;"
         />
+        <span>米</span>
       </el-form-item>
       <el-form-item
-        label="跑步时间"
+        label="运动时间"
         prop="runningTime"
       >
-        <el-input
+        <el-date-picker
           v-model="form.runningTime"
-          style="width: 370px;"
+          type="datetime"
+          placeholder="选择运动时间"
+          format="yyyy-MM-dd HH:mm:ss"
+          value-format="yyyy-MM-dd HH:mm:ss"
+          default-time="00:00:00"
+          style="width:178px;"
         />
       </el-form-item>
     </el-form>
@@ -128,7 +198,7 @@ const defaultForm = {
 export default {
   mixins: [form(defaultForm)],
   // 数据字典
-  dicts: ['sport_type'],
+  dicts: ['sport_type', 'heartrate_value', 'sport_time_value'],
   props: {
     jobStatus: {
       type: Array,
