@@ -3,15 +3,12 @@
     <div v-if="show">
       <el-card class="box-card">
         <div style="color: #666;font-size: 13px;">
-          <svg-icon icon-class="system" style="margin-right: 5px" />
           <span>
-            系统：{{ data.sys.os }}
+            通过运动，可以摸索出一整套普遍适用的实践方法，这种实践方法不仅适用于所有运动，同时也适用于更广泛的实践类别，包括了美术、音乐、甚至棋类乃至数学这一类脑力实践活动。
           </span>
+          <br>
           <span>
-            IP：{{ data.sys.ip }}
-          </span>
-          <span>
-            项目已不间断运行：{{ data.sys.day }}
+            运动可以成为生活、工作之外的第三种精神寄托，或者称之为身份认同。当我们为生活琐事所扰时，还可以去球场上跟球友们挥洒汗水，我们的人际关系中也在家人、朋友、同事之外增加了一项队友。
           </span>
           <i class="el-icon-refresh" style="margin-left: 40px" @click="init" />
         </div>
@@ -26,7 +23,7 @@
             <div class="class-table">
               <div class="table-wrapper">
                 <div class="tabel-container">
-                  <table border="1">
+                  <table border="1" style="width:92%;">
                     <thead>
                       <tr>
                         <td>年龄</td>
@@ -97,7 +94,7 @@
             <div class="class-table">
               <div class="table-wrapper">
                 <div class="tabel-container">
-                  <table border="1">
+                  <table border="1" style="width:92%;margin-left:3%;">
                     <thead>
                       <tr>
                         <td>年龄</td>
@@ -171,14 +168,140 @@
           <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" style="margin-bottom: 10px">
             <el-card class="box-card">
               <div slot="header" class="clearfix">
-                <span style="font-weight: bold;color: #666;font-size: 15px">CPU使用率监控</span>
+                <div class="title">年龄、心率、强度参考</div>
+                <span style="font-weight: bold;color: #666;font-size: 15px">年龄、心率、强度对照表</span>
+                <table style="width:95%;">
+                  <tr>
+                    <td>年龄</td>
+                    <td>8-12</td>
+                    <td>13-17</td>
+                    <td>18-29</td>
+                    <td>30-39</td>
+                    <td>40-49</td>
+                    <td>50-59</td>
+                    <td>60+</td>
+                  </tr>
+                  <tr>
+                    <td>100%</td>
+                    <td>195</td>
+                    <td>190</td>
+                    <td>190</td>
+                    <td>185</td>
+                    <td>175</td>
+                    <td>165</td>
+                    <td>155</td>
+                  </tr>
+                  <tr>
+                    <td>90%</td>
+                    <td>180</td>
+                    <td>175</td>
+                    <td>175</td>
+                    <td>170</td>
+                    <td>165</td>
+                    <td>155</td>
+                    <td>145</td>
+                  </tr>
+                  <tr>
+                    <td>80%</td>
+                    <td>170</td>
+                    <td>165</td>
+                    <td>165</td>
+                    <td>160</td>
+                    <td>150</td>
+                    <td>145</td>
+                    <td>135</td>
+                  </tr>
+                  <tr>
+                    <td>70%</td>
+                    <td>160</td>
+                    <td>155</td>
+                    <td>150</td>
+                    <td>145</td>
+                    <td>140</td>
+                    <td>135</td>
+                    <td>130</td>
+                  </tr>
+                  <tr>
+                    <td>60%</td>
+                    <td>145</td>
+                    <td>140</td>
+                    <td>135</td>
+                    <td>135</td>
+                    <td>130</td>
+                    <td>125</td>
+                    <td>120</td>
+                  </tr>
+                  <tr>
+                    <td>50%</td>
+                    <td>135</td>
+                    <td>130</td>
+                    <td>125</td>
+                    <td>120</td>
+                    <td>115</td>
+                    <td>110</td>
+                    <td>110</td>
+                  </tr>
+                  <tr>
+                    <td>40%</td>
+                    <td>125</td>
+                    <td>120</td>
+                    <td>115</td>
+                    <td>110</td>
+                    <td>105</td>
+                    <td>100</td>
+                    <td>100</td>
+                  </tr>
+                </table>
               </div>
             </el-card>
           </el-col>
           <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" style="margin-bottom: 10px">
             <el-card class="box-card">
               <div slot="header" class="clearfix">
-                <span style="font-weight: bold;color: #666;font-size: 15px">内存使用率监控</span>
+                <div class="title">各强度心率区间参考</div>
+                <span style="font-weight: bold;color: #666;font-size: 15px">以最大心率193为参考</span>
+                <table style="width:95%;">
+                  <tr>
+                    <td>区间名称</td>
+                    <td>心率范围</td>
+                    <td>强度特点</td>
+                  </tr>
+                  <tr>
+                    <td>心率一区</td>
+                    <td>136 ~ 157</td>
+                    <td>热身与恢复</td>
+                  </tr>
+                  <tr>
+                    <td>心率二区</td>
+                    <td>157 ~ 171</td>
+                    <td>燃脂与耐力</td>
+                  </tr>
+                  <tr>
+                    <td>心率三区</td>
+                    <td>171 ~ 176</td>
+                    <td>有氧运动</td>
+                  </tr>
+                  <tr>
+                    <td>心率四区</td>
+                    <td>176 ~ 186</td>
+                    <td>乳酸阀值</td>
+                  </tr>
+                  <tr>
+                    <td>心率五区</td>
+                    <td>186 ~ 193</td>
+                    <td>无氧运动</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                  </tr>
+                </table>
               </div>
             </el-card>
           </el-col>
@@ -191,112 +314,23 @@
 <script>
 import 'echarts/lib/chart/line'
 import 'echarts/lib/component/polar'
-import { initData } from '@/api/data'
 export default {
   name: 'ServerMonitor',
   components: {
   },
   data() {
     return {
-      show: false,
-      monitor: null,
-      url: 'api/monitor',
-      data: {},
-      cpuInfo: {
-        tooltip: {
-          trigger: 'axis'
-        },
-        xAxis: {
-          type: 'category',
-          boundaryGap: false,
-          data: []
-        },
-        yAxis: {
-          type: 'value',
-          min: 0,
-          max: 100,
-          interval: 20
-        },
-        series: [{
-          data: [],
-          type: 'line',
-          areaStyle: {
-            normal: {
-              color: 'rgb(32, 160, 255)' // 改变区域颜色
-            }
-          },
-          itemStyle: {
-            normal: {
-              color: '#6fbae1',
-              lineStyle: {
-                color: '#6fbae1' // 改变折线颜色
-              }
-            }
-          }
-        }]
-      },
-      memoryInfo: {
-        tooltip: {
-          trigger: 'axis'
-        },
-        xAxis: {
-          type: 'category',
-          boundaryGap: false,
-          data: []
-        },
-        yAxis: {
-          type: 'value',
-          min: 0,
-          max: 100,
-          interval: 20
-        },
-        series: [{
-          data: [],
-          type: 'line',
-          areaStyle: {
-            normal: {
-              color: 'rgb(32, 160, 255)' // 改变区域颜色
-            }
-          },
-          itemStyle: {
-            normal: {
-              color: '#6fbae1',
-              lineStyle: {
-                color: '#6fbae1' // 改变折线颜色
-              }
-            }
-          }
-        }]
-      }
+      show: true
     }
   },
   created() {
     this.init()
-    this.monitor = window.setInterval(() => {
-      setTimeout(() => {
-        this.init()
-      }, 2)
-    }, 3500)
   },
   destroyed() {
     clearInterval(this.monitor)
   },
   methods: {
     init() {
-      initData(this.url, {}).then(data => {
-        this.data = data
-        this.show = true
-        if (this.cpuInfo.xAxis.data.length >= 8) {
-          this.cpuInfo.xAxis.data.shift()
-          this.memoryInfo.xAxis.data.shift()
-          this.cpuInfo.series[0].data.shift()
-          this.memoryInfo.series[0].data.shift()
-        }
-        this.cpuInfo.xAxis.data.push(data.time)
-        this.memoryInfo.xAxis.data.push(data.time)
-        this.cpuInfo.series[0].data.push(parseFloat(data.cpu.used))
-        this.memoryInfo.series[0].data.push(parseFloat(data.memory.usageRate))
-      })
     }
   }
 }
