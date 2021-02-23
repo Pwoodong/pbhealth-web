@@ -1,4 +1,4 @@
-import { login, getInfo, logout } from '@/api/login'
+import { login, getInfo, logout, authLoginUserInfo } from '@/api/login'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 
 const user = {
@@ -43,6 +43,21 @@ const user = {
       })
     },
 
+    // 登录
+    AuthLogin({ commit }, token) {
+      return new Promise((resolve, reject) => {
+        authLoginUserInfo(token).then(res => {
+          setToken(res.token, false)
+          commit('SET_TOKEN', res.token)
+          setAuthUserInfo(res.user.user, commit)
+          // 第一次加载菜单时用到， 具体见 src 目录下的 permission.js
+          commit('SET_LOAD_MENUS', true)
+          resolve()
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
     // 获取用户信息
     GetInfo({ commit }) {
       return new Promise((resolve, reject) => {
@@ -82,13 +97,29 @@ export const logOut = (commit) => {
 }
 
 export const setUserInfo = (res, commit) => {
+  console.log('AuthLogin 2 0')
   // 如果没有任何权限，则赋予一个默认的权限，避免请求死循环
   if (res.roles.length === 0) {
     commit('SET_ROLES', ['ROLE_SYSTEM_DEFAULT'])
   } else {
+    console.log('AuthLogin 2 2')
     commit('SET_ROLES', res.roles)
   }
+  console.log('AuthLogin 2 3')
   commit('SET_USER', res.user)
+}
+
+export const setAuthUserInfo = (res, commit) => {
+  console.log('AuthLogin 2 0')
+  // 如果没有任何权限，则赋予一个默认的权限，避免请求死循环
+  if (res.roles.length === 0) {
+    commit('SET_ROLES', ['ROLE_SYSTEM_DEFAULT'])
+  } else {
+    console.log('AuthLogin 2 2')
+    commit('SET_ROLES', res.roles)
+  }
+  console.log('AuthLogin 2 3')
+  commit('SET_USER', res.username)
 }
 
 export default user

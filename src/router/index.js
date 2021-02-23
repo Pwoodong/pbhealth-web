@@ -9,16 +9,17 @@ import { filterAsyncRouter } from '@/store/modules/permission'
 
 NProgress.configure({ showSpinner: false })// NProgress Configuration
 
-const whiteList = ['/login']// no redirect whitelist
+const whiteList = ['/login', '/outhLogin']// no redirect whitelist
 
 router.beforeEach((to, from, next) => {
+  console.log('start')
   if (to.meta.title) {
     document.title = to.meta.title + ' - ' + Config.title
   }
   NProgress.start()
   if (getToken()) {
     // 已登录且要跳转的页面是登录页
-    if (to.path === '/login') {
+    if (to.path === '/login' || to.path === '/outhLogin') {
       next({ path: '/' })
       NProgress.done()
     } else {
@@ -41,10 +42,13 @@ router.beforeEach((to, from, next) => {
       }
     }
   } else {
+    console.log('else...1')
     /* has no token*/
     if (whiteList.indexOf(to.path) !== -1) { // 在免登录白名单，直接进入
+      console.log('whiteList')
       next()
     } else {
+      console.log('redirect')
       next(`/login?redirect=${to.fullPath}`) // 否则全部重定向到登录页
       NProgress.done()
     }
@@ -57,6 +61,7 @@ export const loadMenus = (next, to) => {
     const rdata = JSON.parse(JSON.stringify(res))
     const sidebarRoutes = filterAsyncRouter(sdata)
     const rewriteRoutes = filterAsyncRouter(rdata, true)
+    console.log('buildMenus')
     rewriteRoutes.push({ path: '*', redirect: '/404', hidden: true })
 
     store.dispatch('GenerateRoutes', rewriteRoutes).then(() => { // 存储路由

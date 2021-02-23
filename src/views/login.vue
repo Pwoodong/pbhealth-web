@@ -31,6 +31,12 @@
           <span v-else>登 录 中...</span>
         </el-button>
       </el-form-item>
+      <el-form-item>
+        <div class="login-code">
+          <img src="https://cdn.jsdelivr.net/gh/justauth/justauth-oauth-logo@1.4/gitee.png" @click="goAuthGitee('GITEE')">
+          <img src="../assets/images/github.png" @click="goAuthGitee('GITHUB')">
+        </div>
+      </el-form-item>
     </el-form>
     <!--  底部  -->
     <div v-if="$store.state.settings.showFooter" id="el-login-footer">
@@ -44,13 +50,19 @@
 <script>
 import { encrypt } from '@/utils/rsaEncrypt'
 import Config from '@/settings'
-import { getCodeImg } from '@/api/login'
+import { getCodeImg, goAuthGitee } from '@/api/login'
 import Cookies from 'js-cookie'
 import Background from '@/assets/images/background.jpg'
+import store from '../store'
+import router from '../router/routers'
+// import Axios from 'axios'
 export default {
   name: 'Login',
   data() {
     return {
+      dialog: false,
+      contents: '',
+      islogin: false,
       Background: Background,
       codeUrl: '',
       cookiePass: '',
@@ -73,9 +85,13 @@ export default {
   watch: {
     $route: {
       handler: function(route) {
+        console.log('route changge')
         this.redirect = route.query && route.query.redirect
       },
       immediate: true
+    },
+    islogin(val, oldVal) {
+      console.log(val, oldVal)
     }
   },
   created() {
@@ -91,6 +107,29 @@ export default {
       getCodeImg().then(res => {
         this.codeUrl = res.img
         this.loginForm.uuid = res.uuid
+      })
+    },
+    goAuthGitee(outhType) {
+      goAuthGitee(outhType).then(res => {
+        const win = window.open(res, '_blank')
+        window.addEventListener('message', function(e) {
+          const token = e.data
+          if (token != null) {
+            this.loading = true
+            store.dispatch('AuthLogin', token).then(() => {
+              console.log('jump:' + this.redirect)
+              this.loading = false
+              win.close()
+              router.push({ path: '/' })
+            }).catch((error) => {
+              console.log('error' + error)
+              this.loading = false
+              getCodeImg().then(res => {
+                this.codeUrl = res.img
+              })
+            })
+          }
+        }, false)
       })
     },
     getCookie() {
@@ -146,7 +185,9 @@ export default {
       })
     },
     point() {
+      console.log('Cookies point:' + point)
       const point = Cookies.get('point') !== undefined
+      console.log('point:' + point)
       if (point) {
         this.$notify({
           title: '提示',

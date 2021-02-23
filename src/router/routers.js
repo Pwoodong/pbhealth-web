@@ -10,6 +10,11 @@ export const constantRouterMap = [
     component: (resolve) => require(['@/views/login'], resolve),
     hidden: true
   },
+  { path: '/outhLogin',
+    meta: { title: '登录', noCache: true },
+    component: (resolve) => require(['@/views/outhLogin'], resolve),
+    hidden: true
+  },
   {
     path: '/404',
     component: (resolve) => require(['@/views/features/404'], resolve),

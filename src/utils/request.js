@@ -19,6 +19,7 @@ service.interceptors.request.use(
       config.headers['Authorization'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
     }
     config.headers['Content-Type'] = 'application/json'
+    config.headers['Access-Control-Allow-Origin'] = '*'
     return config
   },
   error => {
@@ -58,6 +59,7 @@ service.interceptors.response.use(
       }
       console.log(code)
       if (code) {
+        debugger
         if (code === 401) {
           store.dispatch('LogOut').then(() => {
             // 用户登录界面提示

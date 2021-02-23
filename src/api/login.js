@@ -33,3 +33,22 @@ export function logout() {
     method: 'delete'
   })
 }
+
+export function goAuthGitee(outhType) {
+  console.log(outhType)
+  return request({
+    url: 'auth/render/' + outhType,
+    method: 'get'
+  })
+}
+
+export function authLoginUserInfo(token) {
+  console.log('authLoginUserInfo:' + token)
+  return request({
+    url: 'auth/authLoginUserInfo',
+    method: 'post',
+    data: {
+      token
+    }
+  })
+}
